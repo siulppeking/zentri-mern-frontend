@@ -1,7 +1,7 @@
 import { useForm } from "react-hook-form"
-import { useAuth } from "../contexts/AuthContext";
 import { useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
+import { useAuth } from "../contexts/AuthContext";
 
 export const Register = () => {
 
@@ -19,7 +19,7 @@ export const Register = () => {
 
     useEffect(() => {
         if (isAuthenticated) {
-            navigate("/task");
+            navigate("/dashboard");
         }
     }, [isAuthenticated, navigate]);
 

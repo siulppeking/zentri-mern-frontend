@@ -1,20 +1,30 @@
-import { useAuth } from "../contexts/AuthContext"
+import { useEffect } from "react";
+import { useTask } from "../contexts/TaskContext";
+import { TaskCard } from "../components/task/TaskCard";
+import { Loading } from "../components/ui/Loading";
 
 export const Task = () => {
 
-    const handleLogout = () => {
-        const succes = confirm("Are you sure you want to logout?");
-        if (succes) {
-            logout();
-        }
-    }
+    const { tasks, isFetching, findAllTasks } = useTask();
 
-    const { user, logout } = useAuth();
+    useEffect(() => {
+        findAllTasks();
+    }, []);
+
     return (
         <div>
-            <h1>Task Page</h1>
-            <p>Welcome, {user?.firstname} {user?.lastname}</p>
-            <button onClick={handleLogout}>Logout</button>
+            {
+                isFetching && <Loading />
+            }
+            {isFetching ? (
+                <p>Loading tasks...</p>
+            ) : (
+                <div className="card-container">
+                    {tasks.map((task) => (
+                        <TaskCard key={task.id} task={task} />
+                    ))}
+                </div>
+            )}
         </div>
     )
 }

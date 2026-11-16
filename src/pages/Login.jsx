@@ -1,7 +1,7 @@
 import { useForm } from "react-hook-form"
 import { Link, useNavigate } from "react-router-dom"
-import { useAuth } from "../contexts/AuthContext";
 import { useEffect } from "react";
+import { useAuth } from "../contexts/AuthContext";
 
 export const Login = () => {
 
@@ -17,7 +17,7 @@ export const Login = () => {
 
     useEffect(() => {
         if (isAuthenticated) {
-            navigate("/task");
+            navigate("/dashboard");
         }
     }, [isAuthenticated, navigate])
 

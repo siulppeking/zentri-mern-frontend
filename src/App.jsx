@@ -4,6 +4,9 @@ import { Login } from "./pages/Login"
 import { Register } from "./pages/Register"
 import { Task } from "./pages/Task"
 import { ProtectedRoute } from "./routes/ProtectedRoute"
+import { NewTask } from "./components/task/NewTask"
+import { EditTask } from "./components/task/EditTask"
+import { Dashboard } from "./pages/Dashboard"
 
 export const App = () => {
   return (
@@ -14,9 +17,10 @@ export const App = () => {
         <Route path="/register" element={<Register />} />
 
         <Route element={<ProtectedRoute />}>
+          <Route path="/dashboard" element={<Dashboard />} />
           <Route path="/task" element={<Task />} />
-          <Route path="/task-add" element={<h1>Create Task</h1>} />
-          <Route path="/task/:id" element={<h1>Task Detail</h1>} />
+          <Route path="/task-new" element={<NewTask />} />
+          <Route path="/task/:id" element={<EditTask />} />
         </Route>
 
         <Route path="*" element={<h1>404 Not Found</h1>} />
