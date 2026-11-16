@@ -1,7 +1,7 @@
 import { create } from "axios";
 
 const http = create({
-  baseURL: import.meta.env.VITE_API_URL,
+  baseURL: "/api",
   headers: {
     "Content-Type": "application/json"
   },
@@ -11,8 +11,7 @@ const http = create({
 http.interceptors.response.use(
   (response) => response,
   (error) => {
-    if (error.response && error.response.status === 401) {
-      // Handle unauthorized error (e.g., redirect to login page)
+    if (error.response?.status === 401) {
       window.location.href = "/login";
     }
     return Promise.reject(error);
