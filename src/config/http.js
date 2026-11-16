@@ -8,7 +8,7 @@ const http = create({
   withCredentials: true
 });
 
-/*http.interceptors.response.use(
+http.interceptors.response.use(
   (response) => response,
   (error) => {
     if (error.response && error.response.status === 401) {
@@ -17,6 +17,6 @@ const http = create({
     }
     return Promise.reject(error);
   }
-);*/
+);
 
 export default http;
