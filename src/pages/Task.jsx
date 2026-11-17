@@ -16,15 +16,22 @@ export const Task = () => {
             {
                 isFetching && <Loading />
             }
-            {isFetching ? (
-                <p>Loading tasks...</p>
-            ) : (
-                <div className="card-container">
-                    {tasks.map((task) => (
-                        <TaskCard key={task.id} task={task} />
-                    ))}
-                </div>
-            )}
+            {
+                !isFetching && tasks.length === 0 && (
+                    <p>No tasks found.</p>
+                )
+            }
+            {
+                isFetching ? (
+                    <p>Loading tasks...</p>
+                ) : (
+                    <div className="card-container">
+                        {tasks.map((task) => (
+                            <TaskCard key={task.id} task={task} />
+                        ))}
+                    </div>
+                )
+            }
         </div>
     )
 }
